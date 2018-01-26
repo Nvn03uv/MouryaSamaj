@@ -1,32 +1,9 @@
-# Operating System Files
-
-*.DS_Store
-Thumbs.db
-*.sw?
-.#*
-*#
-*~
-*.sublime-*
-
-# Build Artifacts
-
-.gradle/
+out/
 build/
+.gradle/
 target/
-bin/
-dependency-reduced-pom.xml
-
-# Eclipse Project Files
-
-.classpath
-.project
-.settings/
-
-# IntelliJ IDEA Files
-
+gradle.properties
+.idea/
 *.iml
-*.ipr
-*.iws
-*.idea
-
-README.html
+/.classpath
+/.project
