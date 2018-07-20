@@ -2,8 +2,10 @@ out/
 build/
 .gradle/
 target/
-gradle.properties
+bin/
 .idea/
 *.iml
 /.classpath
 /.project
+/.springBeans
+/.class
