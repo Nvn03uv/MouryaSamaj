@@ -1,0 +1,15 @@
+---
+
+applications:
+
+  - name: MouryaSamajApp
+
+    buildpack: java_buildpack
+
+    path: build/libs/MouryaSamaj-0.0.1-SNAPSHOT.jar
+    
+    --no-route: true
+ 
+    services:
+
+      - mysql
