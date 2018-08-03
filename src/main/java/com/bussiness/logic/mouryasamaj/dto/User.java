@@ -12,13 +12,11 @@ public class User {
 
   private String fullName;
 
-  private String Relation;
+  private String relation;
 
   private PersonalInfo personalInfo;
 
   private PrefranceInfo prefranceInfo;
-
-
 
   /**
    * @return the password
@@ -52,14 +50,14 @@ public class User {
    * @return the relation
    */
   public String getRelation() {
-    return Relation;
+    return relation;
   }
 
   /**
    * @param relation the relation to set
    */
   public void setRelation(String relation) {
-    Relation = relation;
+    this.relation = relation;
   }
 
   /**

@@ -1,13 +1,24 @@
-package com.bussiness.logic.mouryasamaj.exception;
+package com.bussiness.logic.mouryasamaj.response;
 
-public class ApplicationException<T> {
+public abstract class AbstractResponse {
 
-  private Integer errorCode;
-  private String message;
+  protected Integer errorCode;
+  protected String message;
 
-  public ApplicationException(String message) {
+
+  public AbstractResponse(String message, Integer errorCode) {
     this.message = message;
+    this.errorCode = errorCode;
   }
+
+
+  /**
+   * @return the errorCode
+   */
+  public Integer getErrorCode() {
+    return errorCode;
+  }
+
 
   /**
    * @param errorCode the errorCode to set
@@ -16,12 +27,14 @@ public class ApplicationException<T> {
     this.errorCode = errorCode;
   }
 
+
   /**
    * @return the message
    */
   public String getMessage() {
     return message;
   }
+
 
   /**
    * @param message the message to set
@@ -30,11 +43,6 @@ public class ApplicationException<T> {
     this.message = message;
   }
 
-  /**
-   * @return the errorCode
-   */
-  public Integer getErrorCode() {
-    return errorCode;
-  }
+
 
 }

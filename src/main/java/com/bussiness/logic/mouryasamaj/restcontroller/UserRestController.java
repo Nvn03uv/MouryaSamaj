@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import com.bussiness.logic.mouryasamaj.dto.User;
 import com.bussiness.logic.mouryasamaj.dto.UserLogin;
-import com.bussiness.logic.mouryasamaj.exception.ApplicationException;
+import com.bussiness.logic.mouryasamaj.response.AbstractResponse;
+import com.bussiness.logic.mouryasamaj.response.ErrorResponse;
+import com.bussiness.logic.mouryasamaj.response.SuccessResponse;
 import com.bussiness.logic.mouryasamaj.service.UserSer;
 
 @RestController
@@ -19,38 +21,26 @@ public class UserRestController {
   @Autowired
   private UserSer userSer;
 
-  private ResponseEntity<ApplicationException> responseEntity;
+  private ResponseEntity<? extends AbstractResponse> responseEntity;
 
   @RequestMapping(value = "/login", method = RequestMethod.POST)
-  public ResponseEntity<ApplicationException> checkLogin(@RequestBody UserLogin userLogin) {
-
-    if (userSer.checkLogin(userLogin)) {
-
-      responseEntity = new ResponseEntity<ApplicationException>(new ApplicationException("Success"),
-          HttpStatus.OK);
-
-    } else {
-      responseEntity = new ResponseEntity<ApplicationException>(new ApplicationException("Fail"),
-          HttpStatus.FORBIDDEN);
-    }
-
-    return responseEntity;
-
+  public ResponseEntity<? extends AbstractResponse> checkLogin(@RequestBody UserLogin userLogin) {
+    return buildResponse(userSer.checkLogin(userLogin));
   }
 
   @RequestMapping(value = "/register", method = RequestMethod.POST)
-  public ResponseEntity<ApplicationException> registerUser(@RequestBody User user) {
+  public ResponseEntity<? extends AbstractResponse> registerUser(@RequestBody User user) {
+    return buildResponse(userSer.registerUser(user).equals("Success"));
+  }
 
-    if (userSer.registerUser(user).equals("Success")) {
-      responseEntity = new ResponseEntity<ApplicationException>(new ApplicationException("Success"),
-          HttpStatus.OK);
-
+  private ResponseEntity<? extends AbstractResponse> buildResponse(Boolean result) {
+    if (result) {
+      SuccessResponse<String> successResponse = new SuccessResponse<>("Success");
+      responseEntity = new ResponseEntity<SuccessResponse<String>>(successResponse, HttpStatus.OK);
     } else {
-      responseEntity = new ResponseEntity<ApplicationException>(new ApplicationException("Fail"),
-          HttpStatus.FORBIDDEN);
+      ErrorResponse errorResponse = new ErrorResponse("Fail");
+      responseEntity = new ResponseEntity<ErrorResponse>(errorResponse, HttpStatus.FORBIDDEN);
     }
-
     return responseEntity;
-
   }
 }
