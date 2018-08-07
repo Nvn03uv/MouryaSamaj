@@ -4,6 +4,8 @@ import java.util.List;
 
 public class PersonalInfo {
 
+  private Integer userID;
+
   private String firstName;
 
   private String middleName;
@@ -45,6 +47,20 @@ public class PersonalInfo {
   private String currentCityName;
 
   private List<String> candidateImages;
+
+  /**
+   * @param userID the userID to set
+   */
+  public void setUserID(Integer userID) {
+    this.userID = userID;
+  }
+
+  /**
+   * @return the userID
+   */
+  public Integer getUserID() {
+    return userID;
+  }
 
   /**
    * @return the firstName

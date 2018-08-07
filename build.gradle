@@ -50,6 +50,7 @@ dependencies {
             'org.springframework.boot:spring-boot-starter-actuator',
             'org.springframework.boot:spring-boot-starter-thymeleaf'
     )
+    compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.21'
 	providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }

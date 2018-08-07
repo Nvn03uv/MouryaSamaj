@@ -12,8 +12,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
-@NamedQueries({@NamedQuery(name = "UserRepo.chechlogin",
-    query = "Select count(1) from UserRepo where (email = :userId or mobile = :userId) and password = :password ")})
+@NamedQueries({@NamedQuery(name = "UserRepo.checklogin",
+    query = "Select U from UserRepo U where (email = :userId or mobile = :userId) and password = :password ")})
 
 
 @Entity

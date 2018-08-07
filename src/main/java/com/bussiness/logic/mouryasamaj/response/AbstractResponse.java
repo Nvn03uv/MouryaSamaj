@@ -42,7 +42,4 @@ public abstract class AbstractResponse {
   public void setMessage(String message) {
     this.message = message;
   }
-
-
-
 }

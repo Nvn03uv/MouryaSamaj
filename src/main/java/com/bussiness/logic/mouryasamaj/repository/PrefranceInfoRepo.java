@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "prefrance_info")
@@ -29,6 +30,7 @@ public class PrefranceInfoRepo {
 
   private Integer prefferedEducationLevel;
 
+  @JsonIgnore
   @OneToOne(fetch = FetchType.LAZY, optional = false)
   @JoinColumn(name = "user_id", nullable = false)
   private UserRepo userRepo;
