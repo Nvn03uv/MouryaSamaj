@@ -16,7 +16,7 @@ public class User {
 
   private PersonalInfo personalInfo;
 
-  private PrefranceInfo prefranceInfo;
+  private PreferenceInfo prefranceInfo;
 
   /**
    * @return the password
@@ -120,14 +120,14 @@ public class User {
   /**
    * @return the prefranceInfo
    */
-  public PrefranceInfo getPrefranceInfo() {
+  public PreferenceInfo getPrefranceInfo() {
     return prefranceInfo;
   }
 
   /**
    * @param prefranceInfo the prefranceInfo to set
    */
-  public void setPrefranceInfo(PrefranceInfo prefranceInfo) {
+  public void setPrefranceInfo(PreferenceInfo prefranceInfo) {
     this.prefranceInfo = prefranceInfo;
   }
 

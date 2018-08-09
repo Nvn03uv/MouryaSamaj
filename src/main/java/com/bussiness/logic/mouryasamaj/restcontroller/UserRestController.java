@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import com.bussiness.logic.mouryasamaj.dto.PersonalInfo;
+import com.bussiness.logic.mouryasamaj.dto.PreferenceInfo;
 import com.bussiness.logic.mouryasamaj.dto.User;
 import com.bussiness.logic.mouryasamaj.dto.UserLogin;
 import com.bussiness.logic.mouryasamaj.exception.ResponseException;
@@ -73,7 +74,24 @@ public class UserRestController {
     return responseEntity;
   }
 
-  @RequestMapping(value = "/profile/{userID}", method = RequestMethod.GET)
+  @RequestMapping(value = "/prefrance", method = RequestMethod.PUT)
+  public ResponseEntity<? extends AbstractResponse> updatePrefrance(
+      @RequestBody PreferenceInfo preferenceInfo) {
+    try {
+      preferenceInfo = userSer.updatePreference(preferenceInfo);
+      SuccessResponse<PreferenceInfo> successResponse = new SuccessResponse<>();
+      successResponse.setValue(preferenceInfo);
+      responseEntity =
+          new ResponseEntity<SuccessResponse<PreferenceInfo>>(successResponse, HttpStatus.OK);
+
+    } catch (ResponseException e) {
+      ErrorResponse errorResponse = new ErrorResponse(e.getMessage());
+      responseEntity = new ResponseEntity<ErrorResponse>(errorResponse, HttpStatus.FORBIDDEN);
+    }
+    return responseEntity;
+  }
+
+  @RequestMapping(value = "/{userID}", method = RequestMethod.GET)
   public ResponseEntity<? extends AbstractResponse> getUserByID(@PathVariable Integer userID) {
     try {
       User user = userSer.getUserByID(userID);

@@ -39,7 +39,7 @@ public class UserRepo {
   private PersonalInfoRepo personalInfo;
 
   @OneToOne(fetch = FetchType.LAZY, mappedBy = "userRepo")
-  private PrefranceInfoRepo prefranceInfo;
+  private PreferenceInfoRepo prefranceInfo;
 
   /**
    * @return the fullName
@@ -142,14 +142,14 @@ public class UserRepo {
   /**
    * @return the prefranceInfo
    */
-  public PrefranceInfoRepo getPrefranceInfo() {
+  public PreferenceInfoRepo getPrefranceInfo() {
     return prefranceInfo;
   }
 
   /**
    * @param prefranceInfo the prefranceInfo to set
    */
-  public void setPrefranceInfo(PrefranceInfoRepo prefranceInfo) {
+  public void setPrefranceInfo(PreferenceInfoRepo prefranceInfo) {
     this.prefranceInfo = prefranceInfo;
   }
 

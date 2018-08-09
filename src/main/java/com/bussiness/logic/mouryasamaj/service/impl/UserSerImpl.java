@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.bussiness.logic.mouryasamaj.dao.UserDao;
 import com.bussiness.logic.mouryasamaj.dto.PersonalInfo;
+import com.bussiness.logic.mouryasamaj.dto.PreferenceInfo;
 import com.bussiness.logic.mouryasamaj.dto.User;
 import com.bussiness.logic.mouryasamaj.dto.UserLogin;
 import com.bussiness.logic.mouryasamaj.exception.ExceptionMessage;
@@ -76,6 +77,23 @@ public class UserSerImpl implements UserSer {
   }
 
   @Override
+  public PreferenceInfo updatePreference(PreferenceInfo preferenceInfo) throws ResponseException {
+    try {
+      preferenceInfo = userDao.updatePreference(preferenceInfo);
+    } catch (Exception e) {
+      logger.error(e.getMessage());
+      throw new ResponseException(ExceptionMessage.TECHNICAL_ERROR);
+    }
+    if (preferenceInfo == null) {
+      logger.error(ExceptionMessage.TECHNICAL_ERROR);
+      throw new ResponseException(ExceptionMessage.TECHNICAL_ERROR);
+    }
+
+    return preferenceInfo;
+  }
+
+
+  @Override
   public User getUserByID(Integer userID) throws ResponseException {
 
     User user = null;
@@ -90,22 +108,5 @@ public class UserSerImpl implements UserSer {
       throw new ResponseException(ExceptionMessage.TECHNICAL_ERROR);
     }
     return user;
-  }
-
-  @Override
-  public PersonalInfo getProfileByID(Integer userID) throws ResponseException {
-
-    PersonalInfo personalInfo = null;
-    try {
-      personalInfo = userDao.getProfileByID(userID);
-    } catch (Exception e) {
-      logger.error(e.getMessage(), e);
-      throw new ResponseException(ExceptionMessage.TECHNICAL_ERROR);
-    }
-    if (personalInfo == null) {
-      logger.error(ExceptionMessage.TECHNICAL_ERROR);
-      throw new ResponseException(ExceptionMessage.TECHNICAL_ERROR);
-    }
-    return personalInfo;
   }
 }

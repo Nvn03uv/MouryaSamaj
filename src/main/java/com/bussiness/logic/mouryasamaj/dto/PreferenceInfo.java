@@ -1,6 +1,10 @@
 package com.bussiness.logic.mouryasamaj.dto;
 
-public class PrefranceInfo {
+import com.bussiness.logic.mouryasamaj.repository.UserRepo;
+
+public class PreferenceInfo {
+
+  private Integer userID;
 
   private String prefferedAgeLowerLimit;
 
@@ -13,6 +17,20 @@ public class PrefranceInfo {
   private String prefferedColorComplexion;
 
   private String prefferedEducationLevel;
+
+  /**
+   * @return the userID
+   */
+  public Integer getUserID() {
+    return userID;
+  }
+
+  /**
+   * @param userID the userID to set
+   */
+  public void setUserID(Integer userID) {
+    this.userID = userID;
+  }
 
   /**
    * @return the prefferedAgeLowerLimit
@@ -111,6 +129,8 @@ public class PrefranceInfo {
         + prefferedColorComplexion + ", prefferedEducationLevel=" + prefferedEducationLevel + "]";
   }
 
+  public void setUserRepo(UserRepo find) {
+    // TODO Auto-generated method stub
 
-
+  }
 }

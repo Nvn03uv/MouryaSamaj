@@ -3,6 +3,7 @@ package com.bussiness.logic.mouryasamaj.dao;
 import javax.persistence.EntityExistsException;
 import javax.persistence.NoResultException;
 import com.bussiness.logic.mouryasamaj.dto.PersonalInfo;
+import com.bussiness.logic.mouryasamaj.dto.PreferenceInfo;
 import com.bussiness.logic.mouryasamaj.dto.User;
 
 public interface UserDao {
@@ -16,4 +17,6 @@ public interface UserDao {
   public User getUserByID(Integer userID) throws IllegalStateException;
 
   public PersonalInfo getProfileByID(Integer userID) throws IllegalArgumentException;
+
+  public PreferenceInfo updatePreference(PreferenceInfo prefranceInfo) throws IllegalStateException;
 }

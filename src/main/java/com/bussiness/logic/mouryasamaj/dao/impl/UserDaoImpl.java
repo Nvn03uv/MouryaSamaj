@@ -8,8 +8,10 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.bussiness.logic.mouryasamaj.dao.UserDao;
 import com.bussiness.logic.mouryasamaj.dto.PersonalInfo;
+import com.bussiness.logic.mouryasamaj.dto.PreferenceInfo;
 import com.bussiness.logic.mouryasamaj.dto.User;
 import com.bussiness.logic.mouryasamaj.repository.PersonalInfoRepo;
+import com.bussiness.logic.mouryasamaj.repository.PreferenceInfoRepo;
 import com.bussiness.logic.mouryasamaj.repository.UserRepo;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -46,12 +48,18 @@ public class UserDaoImpl implements UserDao {
   }
 
   @Override
+  @Transactional
+  public PreferenceInfo updatePreference(PreferenceInfo prefranceInfo) throws IllegalStateException {
+    PreferenceInfoRepo prefranceInfoRepo =
+        mapper.convertValue(prefranceInfo, PreferenceInfoRepo.class);
+    prefranceInfoRepo.setUserRepo(em.find(UserRepo.class, prefranceInfo.getUserID()));
+    return mapper.convertValue(em.merge(prefranceInfoRepo), PreferenceInfo.class);
+  }
+
+  @Override
   public User getUserByID(Integer userID) throws IllegalArgumentException {
     return mapper.convertValue(em.find(UserRepo.class, userID), User.class);
   }
 
-  @Override
-  public PersonalInfo getProfileByID(Integer userID) throws IllegalArgumentException {
-    return mapper.convertValue(em.find(PersonalInfoRepo.class, userID), PersonalInfo.class);
-  }
+
 }

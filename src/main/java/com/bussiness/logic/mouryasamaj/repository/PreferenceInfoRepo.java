@@ -12,7 +12,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "prefrance_info")
-public class PrefranceInfoRepo {
+public class PreferenceInfoRepo {
 
   @Id
   @GeneratedValue(strategy = GenerationType.AUTO)

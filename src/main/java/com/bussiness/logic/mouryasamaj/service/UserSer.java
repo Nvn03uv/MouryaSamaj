@@ -1,6 +1,7 @@
 package com.bussiness.logic.mouryasamaj.service;
 
 import com.bussiness.logic.mouryasamaj.dto.PersonalInfo;
+import com.bussiness.logic.mouryasamaj.dto.PreferenceInfo;
 import com.bussiness.logic.mouryasamaj.dto.User;
 import com.bussiness.logic.mouryasamaj.dto.UserLogin;
 import com.bussiness.logic.mouryasamaj.exception.ResponseException;
@@ -15,6 +16,8 @@ public interface UserSer {
 
   public User getUserByID(Integer userID) throws ResponseException;
 
-  public PersonalInfo getProfileByID(Integer userID) throws ResponseException;
+  public PreferenceInfo getPreferenceByID(Integer userID) throws ResponseException;
+
+  public PreferenceInfo updatePreference(PreferenceInfo preferenceInfo) throws ResponseException;
 
 }
