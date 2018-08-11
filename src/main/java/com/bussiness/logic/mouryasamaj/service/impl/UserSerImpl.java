@@ -61,6 +61,23 @@ public class UserSerImpl implements UserSer {
   }
 
   @Override
+  public User getUserByID(Integer userID) throws ResponseException {
+
+    User user = null;
+    try {
+      user = userDao.getUserByID(userID);
+    } catch (Exception e) {
+      logger.error(e.getMessage());
+      throw new ResponseException(ExceptionMessage.TECHNICAL_ERROR);
+    }
+    if (user == null) {
+      logger.error(ExceptionMessage.USER_NOT_EXISTS);
+      throw new ResponseException(ExceptionMessage.USER_NOT_EXISTS);
+    }
+    return user;
+  }
+
+  @Override
   public PersonalInfo updateProfile(PersonalInfo personalInfo) throws ResponseException {
     try {
       personalInfo = userDao.updateProfile(personalInfo);
@@ -92,21 +109,4 @@ public class UserSerImpl implements UserSer {
     return preferenceInfo;
   }
 
-
-  @Override
-  public User getUserByID(Integer userID) throws ResponseException {
-
-    User user = null;
-    try {
-      user = userDao.getUserByID(userID);
-    } catch (Exception e) {
-      logger.error(e.getMessage());
-      throw new ResponseException(ExceptionMessage.TECHNICAL_ERROR);
-    }
-    if (user == null) {
-      logger.error(ExceptionMessage.TECHNICAL_ERROR);
-      throw new ResponseException(ExceptionMessage.TECHNICAL_ERROR);
-    }
-    return user;
-  }
 }

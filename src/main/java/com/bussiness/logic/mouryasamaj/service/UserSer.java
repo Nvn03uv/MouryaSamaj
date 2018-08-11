@@ -12,11 +12,9 @@ public interface UserSer {
 
   public User registerUser(User user) throws ResponseException;
 
-  public PersonalInfo updateProfile(PersonalInfo personalInfo) throws ResponseException;
-
   public User getUserByID(Integer userID) throws ResponseException;
 
-  public PreferenceInfo getPreferenceByID(Integer userID) throws ResponseException;
+  public PersonalInfo updateProfile(PersonalInfo personalInfo) throws ResponseException;
 
   public PreferenceInfo updatePreference(PreferenceInfo preferenceInfo) throws ResponseException;
 

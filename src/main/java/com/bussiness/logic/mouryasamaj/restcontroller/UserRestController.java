@@ -57,6 +57,21 @@ public class UserRestController {
     return responseEntity;
   }
 
+  @RequestMapping(value = "/{userID}", method = RequestMethod.GET)
+  public ResponseEntity<? extends AbstractResponse> getUserByID(@PathVariable Integer userID) {
+    try {
+      User user = userSer.getUserByID(userID);
+      SuccessResponse<User> successResponse = new SuccessResponse<>();
+      successResponse.setValue(user);
+      responseEntity = new ResponseEntity<SuccessResponse<User>>(successResponse, HttpStatus.OK);
+
+    } catch (ResponseException e) {
+      ErrorResponse errorResponse = new ErrorResponse(e.getMessage());
+      responseEntity = new ResponseEntity<ErrorResponse>(errorResponse, HttpStatus.FORBIDDEN);
+    }
+    return responseEntity;
+  }
+
   @RequestMapping(value = "/profile", method = RequestMethod.PUT)
   public ResponseEntity<? extends AbstractResponse> updateProfile(
       @RequestBody PersonalInfo personalInfo) {
@@ -74,7 +89,7 @@ public class UserRestController {
     return responseEntity;
   }
 
-  @RequestMapping(value = "/prefrance", method = RequestMethod.PUT)
+  @RequestMapping(value = "/prefrence", method = RequestMethod.PUT)
   public ResponseEntity<? extends AbstractResponse> updatePrefrance(
       @RequestBody PreferenceInfo preferenceInfo) {
     try {
@@ -83,21 +98,6 @@ public class UserRestController {
       successResponse.setValue(preferenceInfo);
       responseEntity =
           new ResponseEntity<SuccessResponse<PreferenceInfo>>(successResponse, HttpStatus.OK);
-
-    } catch (ResponseException e) {
-      ErrorResponse errorResponse = new ErrorResponse(e.getMessage());
-      responseEntity = new ResponseEntity<ErrorResponse>(errorResponse, HttpStatus.FORBIDDEN);
-    }
-    return responseEntity;
-  }
-
-  @RequestMapping(value = "/{userID}", method = RequestMethod.GET)
-  public ResponseEntity<? extends AbstractResponse> getUserByID(@PathVariable Integer userID) {
-    try {
-      User user = userSer.getUserByID(userID);
-      SuccessResponse<User> successResponse = new SuccessResponse<>();
-      successResponse.setValue(user);
-      responseEntity = new ResponseEntity<SuccessResponse<User>>(successResponse, HttpStatus.OK);
 
     } catch (ResponseException e) {
       ErrorResponse errorResponse = new ErrorResponse(e.getMessage());

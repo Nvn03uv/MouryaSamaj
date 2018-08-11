@@ -40,26 +40,30 @@ public class UserDaoImpl implements UserDao {
   }
 
   @Override
+  public User getUserByID(Integer userID) throws IllegalArgumentException {
+    return mapper.convertValue(em.find(UserRepo.class, userID), User.class);
+  }
+
+  @Override
   @Transactional
   public PersonalInfo updateProfile(PersonalInfo personalInfo) throws IllegalStateException {
+    Integer userID = personalInfo.getUserID();
     PersonalInfoRepo personalInfoRepo = mapper.convertValue(personalInfo, PersonalInfoRepo.class);
+    personalInfoRepo.setPersonalInfoID(userID);
     personalInfoRepo.setUserRepo(em.find(UserRepo.class, personalInfo.getUserID()));
     return mapper.convertValue(em.merge(personalInfoRepo), PersonalInfo.class);
   }
 
   @Override
   @Transactional
-  public PreferenceInfo updatePreference(PreferenceInfo prefranceInfo) throws IllegalStateException {
+  public PreferenceInfo updatePreference(PreferenceInfo prefranceInfo)
+      throws IllegalStateException {
+    Integer userID = prefranceInfo.getUserID();
     PreferenceInfoRepo prefranceInfoRepo =
         mapper.convertValue(prefranceInfo, PreferenceInfoRepo.class);
-    prefranceInfoRepo.setUserRepo(em.find(UserRepo.class, prefranceInfo.getUserID()));
+    prefranceInfoRepo.setPrefranceInfoID(userID);
+    prefranceInfoRepo.setUserRepo(em.find(UserRepo.class, userID));
     return mapper.convertValue(em.merge(prefranceInfoRepo), PreferenceInfo.class);
   }
-
-  @Override
-  public User getUserByID(Integer userID) throws IllegalArgumentException {
-    return mapper.convertValue(em.find(UserRepo.class, userID), User.class);
-  }
-
 
 }

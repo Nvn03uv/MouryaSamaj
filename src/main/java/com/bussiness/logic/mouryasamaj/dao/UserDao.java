@@ -10,13 +10,11 @@ public interface UserDao {
 
   public User checkLogin(String usreID, String password) throws NoResultException;
 
+  public User getUserByID(Integer userID) throws IllegalStateException;
+
   public void regsisterUser(User user) throws EntityExistsException;
 
   public PersonalInfo updateProfile(PersonalInfo personalInfo) throws IllegalStateException;
-
-  public User getUserByID(Integer userID) throws IllegalStateException;
-
-  public PersonalInfo getProfileByID(Integer userID) throws IllegalArgumentException;
 
   public PreferenceInfo updatePreference(PreferenceInfo prefranceInfo) throws IllegalStateException;
 }
