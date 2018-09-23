@@ -33,7 +33,7 @@ public class UserRepo {
 
   private String fullName;
 
-  private String relation;
+  private Integer relation;
 
   @OneToOne(fetch = FetchType.LAZY, mappedBy = "userRepo")
   private PersonalInfoRepo personalInfo;
@@ -58,14 +58,14 @@ public class UserRepo {
   /**
    * @return the relation
    */
-  public String getRelation() {
+  public Integer getRelation() {
     return relation;
   }
 
   /**
    * @param relation the relation to set
    */
-  public void setRelation(String relation) {
+  public void setRelation(Integer relation) {
     this.relation = relation;
   }
 
