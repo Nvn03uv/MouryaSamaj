@@ -26,7 +26,7 @@ apply plugin: 'io.spring.dependency-management'
 
 group = 'com.bussiness.logic'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = 1.8
+sourceCompatibility = 10
 
 repositories {
 	mavenCentral()
@@ -50,7 +50,9 @@ dependencies {
             'org.springframework.boot:spring-boot-starter-actuator',
             'org.springframework.boot:spring-boot-starter-thymeleaf'
     )
+    compileOnly('org.projectlombok:lombok:1.18.2')
     compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.21'
+    compile group: 'javax.xml.bind', name: 'jaxb-api', version: '2.2.4'
 	providedRuntime('org.springframework.boot:spring-boot-starter-tomcat')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 }
