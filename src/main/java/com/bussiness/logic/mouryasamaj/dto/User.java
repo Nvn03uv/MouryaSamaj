@@ -19,7 +19,7 @@ public class User {
 
   private String fullName;
 
-  private String relation;
+  private Integer relation;
 
   private PersonalInfo personalInfo;
 
