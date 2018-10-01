@@ -9,18 +9,14 @@ import lombok.ToString;
 @ToString
 public class PreferenceInfo {
 
-	private Integer userID;
-
+	private String userID;
 	private String prefferedAgeLowerLimit;
-
 	private String prefferedHeight;
-
 	private String prefferedCandidateBodyType;
-
 	private String prefferedAgeUpperLimit;
-
 	private String prefferedColorComplexion;
-
 	private String prefferedEducationLevel;
+	private Integer prefferedDietHabit;
+	private Integer prefferedMartialStatus;
 
 }

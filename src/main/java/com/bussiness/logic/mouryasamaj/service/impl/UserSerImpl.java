@@ -7,9 +7,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.bussiness.logic.mouryasamaj.dao.UserDao;
-import com.bussiness.logic.mouryasamaj.dto.PersonalInfo;
+import com.bussiness.logic.mouryasamaj.dto.UserPersonlInformation;
 import com.bussiness.logic.mouryasamaj.dto.PreferenceInfo;
-import com.bussiness.logic.mouryasamaj.dto.User;
+import com.bussiness.logic.mouryasamaj.dto.UserInfo;
 import com.bussiness.logic.mouryasamaj.dto.UserLogin;
 import com.bussiness.logic.mouryasamaj.exception.ExceptionMessage;
 import com.bussiness.logic.mouryasamaj.exception.ResponseException;
@@ -23,8 +23,8 @@ public class UserSerImpl implements UserSer {
   private static final Logger logger = LoggerFactory.getLogger(UserSerImpl.class);
 
   @Override
-  public User checkLogin(UserLogin userLogin) throws ResponseException {
-    User user = null;
+  public UserInfo checkLogin(UserLogin userLogin) throws ResponseException {
+    UserInfo user = null;
     try {
       user = userDao.checkLogin(userLogin.getUserID(), userLogin.getPassword());
     } catch (NoResultException e) {
@@ -42,7 +42,7 @@ public class UserSerImpl implements UserSer {
   }
 
   @Override
-  public User registerUser(User user) throws ResponseException {
+  public UserInfo registerUser(UserInfo user) throws ResponseException {
 
     try {
       userDao.regsisterUser(user);
@@ -61,9 +61,9 @@ public class UserSerImpl implements UserSer {
   }
 
   @Override
-  public User getUserByID(Integer userID) throws ResponseException {
+  public UserInfo getUserByID(Integer userID) throws ResponseException {
 
-    User user = null;
+    UserInfo user = null;
     try {
       user = userDao.getUserByID(userID);
     } catch (Exception e) {
@@ -78,7 +78,7 @@ public class UserSerImpl implements UserSer {
   }
 
   @Override
-  public PersonalInfo updateProfile(PersonalInfo personalInfo) throws ResponseException {
+  public UserPersonlInformation updateProfile(UserPersonlInformation personalInfo) throws ResponseException {
     try {
       personalInfo = userDao.updateProfile(personalInfo);
     } catch (Exception e) {

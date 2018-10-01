@@ -10,7 +10,6 @@ import lombok.ToString;
 public class UserLogin {
 
 	private String userID;
-
 	private String password;
 
 }
